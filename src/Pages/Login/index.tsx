@@ -1,19 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { setFormFields } from "./store/slice";
 import { userLogIn } from "../../store/auth/action";
 import { useAppDispatch } from "../../store";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import {
-  selectError,
-  selectIsAuthenticated,
-  selectUser,
-} from "../../store/auth/selector";
+import { selectError, selectIsAuthenticated } from "../../store/auth/selector";
 import { setErrorNull } from "../../store/auth/slice";
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useAppDispatch();
   const error = useSelector(selectError);
   const navigate = useNavigate();
@@ -53,7 +48,7 @@ const Login = () => {
           />
           <Label>Password</Label>
           <Input
-            type={showPassword ? "text" : "password"}
+            type={"password"}
             name="password"
             placeholder="Enter your password"
             autoComplete="current-password"

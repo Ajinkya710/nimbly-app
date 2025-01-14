@@ -9,7 +9,8 @@ import {
   Navigate,
 } from "react-router-dom";
 import PrivatePage from "./Common/PrivatePage";
-import Home from "./Pages/Home";
+import Layout from "./Common/Layout/Layout";
+import ToDoList from "./Pages/Home";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -30,7 +31,9 @@ const App: React.FC = () => {
         path="/home"
         element={
           <PrivatePage>
-            <Home />
+            <Layout>
+              <ToDoList />
+            </Layout>
           </PrivatePage>
         }
       />

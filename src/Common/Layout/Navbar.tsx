@@ -1,12 +1,12 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectUser } from "../../../store/auth/selector";
-import { logout } from "../../../store/auth/slice";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../store";
 import styled from "styled-components";
+import { useAppDispatch } from "../../store";
+import { logout } from "../../store/auth/slice";
+import { selectUser } from "../../store/auth/selector";
 
-const UserDetails = () => {
+const NavBar = () => {
   const user = useSelector(selectUser);
 
   const dispatch = useAppDispatch();
@@ -31,7 +31,7 @@ const UserDetails = () => {
   );
 };
 
-export default UserDetails;
+export default NavBar;
 
 const Container = styled.div`
   display: flex;
@@ -95,6 +95,7 @@ const LogoutButton = styled.button`
   font-size: 14px;
   font-weight: 500;
   cursor: pointer;
+  min-width: 150px;
   transition: background-color 0.3s ease;
 
   &:hover {
