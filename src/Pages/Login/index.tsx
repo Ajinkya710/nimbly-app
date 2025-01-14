@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { setFormFields } from "./store/slice";
 import { userLogIn } from "../../store/auth/action";
 import { useAppDispatch } from "../../store";
@@ -13,6 +13,7 @@ import {
 import { setErrorNull } from "../../store/auth/slice";
 
 const Login = () => {
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useAppDispatch();
   const error = useSelector(selectError);
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const result = await dispatch(userLogIn());
+    await dispatch(userLogIn());
   };
 
   return (
@@ -52,7 +53,7 @@ const Login = () => {
           />
           <Label>Password</Label>
           <Input
-            type="password"
+            type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Enter your password"
             autoComplete="current-password"
