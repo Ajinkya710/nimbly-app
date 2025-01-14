@@ -4,7 +4,11 @@ import { useSearchParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useAppDispatch } from "../../store";
-import { selectPaginationMeta, selectToDoList } from "./store/selector";
+import {
+  selectIsLoading,
+  selectPaginationMeta,
+  selectToDoList,
+} from "./store/selector";
 import { setPage } from "./store/slice";
 import { getToDoList } from "./store/action";
 
@@ -13,6 +17,7 @@ const ToDoList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const todos = useSelector(selectToDoList);
+  const isLoading = useSelector(selectIsLoading);
   const { currentPage, totalItems } = useSelector(selectPaginationMeta);
   const pageSize = 10;
 
@@ -31,7 +36,7 @@ const ToDoList = () => {
       dispatch(setPage(page));
     }
     dispatch(getToDoList());
-  }, [searchParams, currentPage, setSearchParams]);
+  }, [searchParams]);
 
   const onPageChange = (page: number) => {
     const skip = (page - 1) * pageSize;
@@ -61,11 +66,14 @@ const ToDoList = () => {
 
   return (
     <PageWrapper>
+      <HeaderText>Here is your ToDo list:</HeaderText>
       <Table
         dataSource={todos}
         columns={columns}
         rowKey="id"
         pagination={false}
+        loading={isLoading}
+        scroll={{ x: 450 }}
       />
       <StyledPagination
         current={currentPage}
@@ -80,7 +88,16 @@ const ToDoList = () => {
 export default ToDoList;
 
 const PageWrapper = styled.div`
-  padding: 2rem 4rem;
+  padding: 1rem 4rem;
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
+
+const HeaderText = styled.p`
+  font-size: 1rem;
+  font-weight: 500;
 `;
 
 const StyledPagination = styled(Pagination)`

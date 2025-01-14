@@ -4,4 +4,6 @@ const selectToDoList = (state: RootState) => state.toDo.todos;
 
 const selectPaginationMeta = (state: RootState) => state.toDo.pagingMeta;
 
-export { selectToDoList, selectPaginationMeta };
+const selectIsLoading = (state: RootState) => state.toDo.isLoading;
+
+export { selectToDoList, selectPaginationMeta, selectIsLoading };

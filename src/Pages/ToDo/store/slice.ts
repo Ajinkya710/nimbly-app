@@ -8,6 +8,7 @@ interface ToDoSlice {
     currentPage: number;
     totalItems: number;
   };
+  isLoading: boolean;
 }
 
 const initialState: ToDoSlice = {
@@ -17,6 +18,7 @@ const initialState: ToDoSlice = {
     currentPage: 1,
     totalItems: 0,
   },
+  isLoading: false,
 };
 
 const toDoSlice = createSlice({
@@ -29,12 +31,17 @@ const toDoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(getToDoList.pending, (state, action: any) => {
+        state.isLoading = true;
+      })
       .addCase(getToDoList.fulfilled, (state, action: any) => {
         state.todos = action.payload.todos;
         state.pagingMeta.totalItems = action.payload.total;
+        state.isLoading = false;
       })
       .addCase(getToDoList.rejected, (state, _) => {
         state.error = "Failed to fetch todo list";
+        state.isLoading = false;
       });
   },
 });
