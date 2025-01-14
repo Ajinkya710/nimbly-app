@@ -1,9 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
+import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
+import loginSlice from "../Pages/Login/store/slice";
 
 const store = configureStore({
   reducer: {
-    
+    login: loginSlice,
   },
 });
 
