@@ -2,13 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 import authSlice from "./auth/slice";
 import loginSlice from "../Pages/Login/store/slice";
-import homeSlice from "../Pages/Home/store/slice";
+import toDoSlice from "../Pages/ToDo/store/slice";
 
 const store = configureStore({
   reducer: {
     login: loginSlice,
     auth: authSlice,
-    home: homeSlice
+    toDo: toDoSlice
   },
 });
 

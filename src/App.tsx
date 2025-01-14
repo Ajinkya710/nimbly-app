@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import PrivatePage from "./Common/PrivatePage";
 import Layout from "./Common/Layout/Layout";
-import ToDoList from "./Pages/Home";
+import ToDoList from "./Pages/ToDo";
 
 const App: React.FC = () => {
   const location = useLocation();
@@ -19,16 +19,16 @@ const App: React.FC = () => {
 
   useEffect(() => {
     if (path === "/") {
-      navigate("/home", { replace: true });
+      navigate("/toDo", { replace: true });
     }
   }, [path, navigate]);
 
   return (
     <Routes>
-      <Route path="/" element={<Navigate to="/home" />} />
+      <Route path="/" element={<Navigate to="/toDo" />} />
       <Route path="/login" element={<Login />} />
       <Route
-        path="/home"
+        path="/toDo"
         element={
           <PrivatePage>
             <Layout>

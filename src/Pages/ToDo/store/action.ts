@@ -13,7 +13,7 @@ export const getToDoList = createAsyncThunk<
   { state: RootState }
 >("todos/getToDoList", async (_, { getState }) => {
   const state = getState();
-  const { pagingMeta } = state.home;
+  const { pagingMeta } = state.toDo;
   const { currentPage } = pagingMeta;
 
   const skip = (currentPage - 1) * 10;

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getToDoList } from "./action";
 
-interface HomeSlice {
+interface ToDoSlice {
   todos: any;
   error: string | null;
   pagingMeta: {
@@ -10,7 +10,7 @@ interface HomeSlice {
   };
 }
 
-const initialState: HomeSlice = {
+const initialState: ToDoSlice = {
   todos: [],
   error: null,
   pagingMeta: {
@@ -19,7 +19,7 @@ const initialState: HomeSlice = {
   },
 };
 
-const homeSlice = createSlice({
+const toDoSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
@@ -39,6 +39,6 @@ const homeSlice = createSlice({
   },
 });
 
-export const { setPage } = homeSlice.actions;
+export const { setPage } = toDoSlice.actions;
 
-export default homeSlice.reducer;
+export default toDoSlice.reducer;

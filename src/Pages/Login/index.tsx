@@ -16,7 +16,7 @@ const Login = () => {
   const isAuthenticated = useSelector(selectIsAuthenticated);
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/home");
+      navigate("/toDo");
     }
   }, [isAuthenticated, navigate]);
 

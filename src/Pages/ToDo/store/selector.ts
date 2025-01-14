@@ -1,7 +1,7 @@
 import { RootState } from "../../../store";
 
-const selectToDoList = (state: RootState) => state.home.todos;
+const selectToDoList = (state: RootState) => state.toDo.todos;
 
-const selectPaginationMeta = (state: RootState) => state.home.pagingMeta;
+const selectPaginationMeta = (state: RootState) => state.toDo.pagingMeta;
 
 export { selectToDoList, selectPaginationMeta };
