@@ -23,10 +23,7 @@ const homeSlice = createSlice({
       })
       .addCase(getToDoList.rejected, (state, action) => {
         state.todos = null;
-        state.error =
-          action.type === "userLogIn/rejected"
-            ? "Invalid Username/Password"
-            : "Something went wrong";
+        state.error = "Failed to fetch todo list"
       });
   },
 });

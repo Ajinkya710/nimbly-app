@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ToDoList = () => {
+const PaginatedTable = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const ToDoList = () => {
   )
 }
 
-export default ToDoList
+export default PaginatedTable

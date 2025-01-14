@@ -27,7 +27,6 @@ const Login = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const result = await dispatch(userLogIn());
-    console.log(result);
   };
 
   return (
@@ -42,6 +41,7 @@ const Login = () => {
           <Input
             type="text"
             name="username"
+            autoComplete="current-username"
             placeholder="Enter your username"
             onChange={(e) => {
               dispatch(setErrorNull());
@@ -55,6 +55,7 @@ const Login = () => {
             type="password"
             name="password"
             placeholder="Enter your password"
+            autoComplete="current-password"
             onChange={(e) => {
               dispatch(setErrorNull());
               dispatch(

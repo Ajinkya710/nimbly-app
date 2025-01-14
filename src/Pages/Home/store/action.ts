@@ -1,11 +1,20 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { RootState } from "../../../store";
 import { $get } from "../../../http";
+import { RootState } from "../../../store";
 
-export const getToDoList = createAsyncThunk<string, void, { state: RootState }>(
-    "getToDoList",
-    async () => {
-      return await $get("/todos");
-    }
-  );
-  
+interface TodoResponse {
+  todos: any[];
+  total: number;
+}
+
+export const getToDoList = createAsyncThunk<TodoResponse, void, { state: RootState }>(
+  "todos/getToDoList",
+  async () => {
+    const response = await $get('/todos?limit=10&skip=0');
+    const todos = response.data;
+    const total = response.headers["x-total-count"] || 0;
+
+    console.log(todos, total);
+    return { todos, total };
+  }
+);
