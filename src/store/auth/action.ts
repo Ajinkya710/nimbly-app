@@ -1,17 +1,22 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import { $post } from "../../../api";
-import { RootState } from "../../../store";
+import { $get, $post } from "../../http";
+import { RootState } from "..";
 
 export const userLogIn = createAsyncThunk<string, void, { state: RootState }>(
   "userLogIn",
   async (_, { getState }) => {
     const { username, password } = getState().login.loginFormData;
 
-    const response = await $post("/auth/login", {
+    return await $post("/auth/login", {
       username,
       password,
     });
+  }
+);
 
-    return response.data.token;
+export const verifyToken = createAsyncThunk<string, void, { state: RootState }>(
+  "verifyToken",
+  async () => {
+    return await $get("/auth/me");
   }
 );

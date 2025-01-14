@@ -1,10 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoginFormData, User } from "./types";
-import { userLogIn } from "./action";
+import { LoginFormData } from "../../../store/auth/types";
 
 interface LoginSlice {
   loginFormData: LoginFormData;
-  userData: User | null;
 }
 
 const initialState: LoginSlice = {
@@ -12,11 +10,10 @@ const initialState: LoginSlice = {
     username: "",
     password: "",
   },
-  userData: null,
 };
 
 const loginSlice = createSlice({
-  name: "login",
+  name: "auth",
   initialState,
   reducers: {
     setFormFields: (
@@ -26,15 +23,6 @@ const loginSlice = createSlice({
       const { field, value } = action.payload;
       state.loginFormData[field] = value;
     },
-  },
-  extraReducers: (builder) => {
-    builder
-    .addCase(userLogIn.fulfilled, (state, action: any) => {
-      state.userData = action.payload;
-    })
-    .addCase(userLogIn.rejected, (state, _) => {
-      state.userData = null;
-    })
   },
 });
 
