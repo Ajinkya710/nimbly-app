@@ -39,6 +39,7 @@ const Container = styled.div`
   background-color: #f9f9f9;
   padding: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
 
   @media (max-width: 600px) {
     flex-direction: column;
@@ -92,7 +93,7 @@ const LogoutButton = styled.button`
   cursor: pointer;
   min-width: 150px;
   transition: background-color 0.3s ease;
-
+  
   &:hover {
     background-color: #d9363e;
   }
