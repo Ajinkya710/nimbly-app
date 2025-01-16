@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router basename="/nimbly-app">
       <Provider store={store}>
         <App />
       </Provider>
