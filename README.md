@@ -1,36 +1,36 @@
 ### Nimbly Code Challenge
 
-Steps to run code:
+    Steps to run code:
 
-git clone https://github.com/Ajinkya710/nimbly-app
+    git clone https://github.com/Ajinkya710/nimbly-app
 
-cd nimbly-app
-npm install
+    cd nimbly-app
+    npm install
 
-This will start the frontend on http://localhost:3000.
+    This will start the frontend on http://localhost:3000.
 
 ### Code Structure
 
 The code uses Redux for state management, styled-components for styling and axios for api communication
 
-store - Manages all the state data for a particular page
+    store - Manages all the state data for a particular page
         
-    - slice.ts: Contains the state and reducers for the page
+        - slice.ts: Contains the state and reducers for the page
         
-    - selector.ts: Contains selectors to access specific data from the slice
+        - selector.ts: Contains selectors to access specific data from the slice
         
-    - action.ts: Contains API calls related to the page, including actions that update the state
+        - action.ts: Contains API calls related to the page, including actions that update the state
         
-    - types.ts: Defines the TypeScript types for the slice’s state and actions
+        - types.ts: Defines the TypeScript types for the slice’s state and actions
 
-http.ts - Contains reusable modular methods ($get, $post, $put) for making API requests across the application
+    http.ts - Contains reusable modular methods ($get, $post, $put) for making API requests across the application
 
-Pages - Contains all the pages of the application, each with its own logic, store, and UI
+    Pages - Contains all the pages of the application, each with its own logic, store, and UI
 
-Common - Contains reusable components such as
+    Common - Contains reusable components such as
 
-    - PrivatePage: Component for handling private routes
+        - PrivatePage: Component for handling private routes
 
-    - Layout: Common Layout component for pages
+        - Layout: Common Layout component for pages
 
-    - Spinner: Reusable loading spinner component
+        - Spinner: Reusable loading spinner component
