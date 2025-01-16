@@ -6,4 +6,6 @@ const selectUser = (state: RootState) => state.auth.user;
 
 const selectIsAuthenticated = (state: RootState) => state.auth.isAuthenticated;
 
-export { selectError, selectUser, selectIsAuthenticated };
+const selectIsLoading = (state: RootState) => state.auth.isLoading;
+
+export { selectError, selectUser, selectIsAuthenticated, selectIsLoading };

@@ -4,6 +4,7 @@ import { TLoginResponse, TUser } from "./types";
 
 interface AuthSlice {
   user: TUser | null;
+  isLoading: boolean;
   isAuthenticated: boolean;
   token: string | null;
   error: string | null;
@@ -11,6 +12,7 @@ interface AuthSlice {
 
 const initialState: AuthSlice = {
   user: null,
+  isLoading: false,
   isAuthenticated: false,
   token: null,
   error: null,
@@ -31,17 +33,23 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(userLogIn.fulfilled, (state, action: PayloadAction<TLoginResponse>) => {
-        const { accessToken } = action.payload;
-        state.isAuthenticated = true;
-        state.error = null;
-        localStorage.setItem("authToken", accessToken);
+      .addCase(userLogIn.pending, (state, _) => {
+        state.isLoading = true;
       })
+      .addCase(
+        userLogIn.fulfilled,
+        (state, action: PayloadAction<TLoginResponse>) => {
+          const { accessToken } = action.payload;
+          state.isLoading = false;
+          state.isAuthenticated = true;
+          state.error = null;
+          localStorage.setItem("authToken", accessToken);
+        }
+      )
       .addCase(userLogIn.rejected, (state, action) => {
+        state.isLoading = false;
         state.error =
-          action.type === "userLogIn/rejected"
-            ? "Invalid Username/Password"
-            : "Something went wrong";
+          action.error.message || "Something went wrong. Please try again.";
       })
       .addCase(verifyToken.fulfilled, (state, action: PayloadAction<TUser>) => {
         state.user = action.payload;

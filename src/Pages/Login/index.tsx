@@ -5,7 +5,11 @@ import { useAppDispatch } from "../../store";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { selectError, selectIsAuthenticated } from "../../store/auth/selector";
+import {
+  selectError,
+  selectIsAuthenticated,
+  selectIsLoading,
+} from "../../store/auth/selector";
 import { setErrorNull } from "../../store/auth/slice";
 
 const Login = () => {
@@ -13,7 +17,9 @@ const Login = () => {
   const error = useSelector(selectError);
   const navigate = useNavigate();
 
+  const isLoading = useSelector(selectIsLoading);
   const isAuthenticated = useSelector(selectIsAuthenticated);
+
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/toDo");
@@ -62,7 +68,16 @@ const Login = () => {
             }}
           />
           {error && <ErrorText>{error}</ErrorText>}
-          <SubmitButton type="submit">Sign In</SubmitButton>
+          <SubmitButton type="submit" disabled={isLoading}>
+            {isLoading ? (
+              <Loading>
+                <Spinner />
+                <Label>Logging In</Label>
+              </Loading>
+            ) : (
+              "Sign In"
+            )}
+          </SubmitButton>
         </FormContainer>
       </Container>
     </PageWrapper>
@@ -156,11 +171,46 @@ const SubmitButton = styled.button`
   font-size: 1rem;
   font-weight: 600;
   border: none;
+  border-radius: 4px;
   cursor: pointer;
   transition: all 240ms ease-in-out;
   background: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
     background: rgba(0, 0, 0, 0.6);
+  }
+
+  &:disabled {
+    background: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+`;
+
+const Loading = styled.div`
+  display: flex;
+  gap: 1em;
+  justify-content: space-between;
+`;
+
+const Spinner = styled.div`
+  border: 2px solid #000000;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  animation: spin 0.6s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 `;

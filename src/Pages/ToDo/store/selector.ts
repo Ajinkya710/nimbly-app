@@ -6,4 +6,6 @@ const selectPaginationMeta = (state: RootState) => state.toDo.pagingMeta;
 
 const selectIsLoading = (state: RootState) => state.toDo.isLoading;
 
-export { selectToDoList, selectPaginationMeta, selectIsLoading };
+const selectError = (state: RootState) => state.toDo.error
+
+export { selectToDoList, selectPaginationMeta, selectIsLoading, selectError };

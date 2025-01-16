@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 import { useAppDispatch } from "../../store";
 import {
+  selectError,
   selectIsLoading,
   selectPaginationMeta,
   selectToDoList,
@@ -18,6 +19,7 @@ const ToDoList = () => {
 
   const todos = useSelector(selectToDoList);
   const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
   const { currentPage, totalItems } = useSelector(selectPaginationMeta);
   const pageSize = 10;
 
@@ -67,6 +69,7 @@ const ToDoList = () => {
   return (
     <PageWrapper>
       <HeaderText>Here is your ToDo list:</HeaderText>
+      {error && <ErrorText>{error}</ErrorText>}
       <Table
         dataSource={todos}
         columns={columns}
@@ -98,6 +101,14 @@ const PageWrapper = styled.div`
 const HeaderText = styled.p`
   font-size: 1rem;
   font-weight: 500;
+`;
+
+const ErrorText = styled.div`
+  display: flex;
+  justify-content: center;
+  color: red;
+  margin: 0 auto;
+  font-size: 14px;
 `;
 
 const StyledPagination = styled(Pagination)`

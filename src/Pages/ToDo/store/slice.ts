@@ -34,6 +34,7 @@ const toDoSlice = createSlice({
     builder
       .addCase(getToDoList.pending, (state, _) => {
         state.isLoading = true;
+        state.error = null;
       })
       .addCase(
         getToDoList.fulfilled,
@@ -41,6 +42,7 @@ const toDoSlice = createSlice({
           state.todos = action.payload.todos;
           state.pagingMeta.totalItems = action.payload.total;
           state.isLoading = false;
+          state.error = null;
         }
       )
       .addCase(getToDoList.rejected, (state, _) => {
