@@ -59,16 +59,6 @@ const Login = () => {
               );
             }}
           />
-          <div>
-            <input
-              type="checkbox"
-              className="custom-control-input"
-              id="customCheck1"
-            />
-            <label className="custom-control-label" htmlFor="customCheck1">
-              Remember me
-            </label>
-          </div>
           {error && <ErrorText>{error}</ErrorText>}
           <SubmitButton type="submit">Sign In</SubmitButton>
         </FormContainer>
