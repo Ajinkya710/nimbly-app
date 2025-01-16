@@ -39,6 +39,7 @@ const Login = () => {
             name="username"
             autoComplete="current-username"
             placeholder="Enter your username"
+            required
             onChange={(e) => {
               dispatch(setErrorNull());
               dispatch(
@@ -52,6 +53,7 @@ const Login = () => {
             name="password"
             placeholder="Enter your password"
             autoComplete="current-password"
+            required
             onChange={(e) => {
               dispatch(setErrorNull());
               dispatch(
