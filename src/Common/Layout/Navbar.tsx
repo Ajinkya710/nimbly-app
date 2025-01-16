@@ -37,16 +37,12 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: #f9f9f9;
-  padding: 16px;
+  padding: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
   @media (max-width: 600px) {
-  flex-wrap: wrap;
-  gap: 1rem;
-
-    & > * {
-      flex: 1 1 100%;
-    }
+    flex-direction: column;
+    gap: 1rem;
   }
 `;
 
@@ -103,5 +99,10 @@ const LogoutButton = styled.button`
 
   &:focus {
     outline: none;
+  }
+
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: 300px;
   }
 `;
