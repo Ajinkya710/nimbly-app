@@ -144,6 +144,7 @@ const Input = styled.input`
 const ErrorText = styled.p`
   color: red;
   margin: 0 auto;
+  font-size: 14px;
 `;
 
 const SubmitButton = styled.button`
