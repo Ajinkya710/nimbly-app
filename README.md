@@ -1,6 +1,8 @@
 ### Nimbly Code Challenge
 
-    Steps to run code:
+    The production version of the app can be found here: [text](https://Ajinkya710.github.io/nimbly-app)
+    
+    Steps to run code locally:
 
     git clone https://github.com/Ajinkya710/nimbly-app
 
