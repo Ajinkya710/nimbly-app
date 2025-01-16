@@ -1,6 +1,6 @@
 ### Nimbly Code Challenge
 
-The production version of the app can be found [Here](https://Ajinkya710.github.io/nimbly-app)
+The production version of the app can be found here: [Nimbly App](https://nimbly-app.vercel.app/)
 
     Steps to run code locally:
 
