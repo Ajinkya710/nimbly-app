@@ -13,7 +13,7 @@ The production version of the app can be found here: [Nimbly App](https://nimbly
 
 ### Code Structure
 
-The code uses Redux for state management, styled-components for styling and axios for api communication
+The code uses Redux for state management, styled-components for styling, antd - table and axios for api communication
 
     store - Manages all the state data for a particular page
         

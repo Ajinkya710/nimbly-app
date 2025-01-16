@@ -108,4 +108,8 @@ const StyledPagination = styled(Pagination)`
   .ant-pagination-options {
     display: none;
   }
+
+  @media (max-width: 600px) {
+    justify-content: center;
+  }
 `;
