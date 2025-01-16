@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { userLogIn, verifyToken } from "./action";
+import { TLoginResponse, TUser } from "./types";
 
 interface AuthSlice {
-  user: any;
-  isAuthenticated: Boolean;
+  user: TUser | null;
+  isAuthenticated: boolean;
   token: string | null;
   error: string | null;
 }
@@ -30,7 +31,7 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(userLogIn.fulfilled, (state, action: any) => {
+      .addCase(userLogIn.fulfilled, (state, action: PayloadAction<TLoginResponse>) => {
         const { accessToken } = action.payload;
         state.isAuthenticated = true;
         state.error = null;
@@ -42,7 +43,7 @@ const authSlice = createSlice({
             ? "Invalid Username/Password"
             : "Something went wrong";
       })
-      .addCase(verifyToken.fulfilled, (state, action: any) => {
+      .addCase(verifyToken.fulfilled, (state, action: PayloadAction<TUser>) => {
         state.user = action.payload;
       })
       .addCase(verifyToken.rejected, (state, _) => {

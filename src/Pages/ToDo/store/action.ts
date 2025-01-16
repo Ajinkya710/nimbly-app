@@ -1,14 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { $get } from "../../../http";
 import { RootState } from "../../../store";
-
-interface TodoResponse {
-  todos: any[];
-  total: number;
-}
+import { TToDoResponse } from "./types";
 
 export const getToDoList = createAsyncThunk<
-  TodoResponse,
+  TToDoResponse,
   void,
   { state: RootState }
 >("todos/getToDoList", async (_, { getState }) => {

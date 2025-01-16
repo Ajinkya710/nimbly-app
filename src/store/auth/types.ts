@@ -1,8 +1,15 @@
-type LoginFormData = {
+type TLoginFormData = {
   username: string;
   password: string;
 };
 
-type User = {};
+type TUser = {
+  username: string;
+  email: string;
+};
 
-export type { LoginFormData, User };
+type TLoginResponse = {
+  accessToken: string;
+};
+
+export type { TLoginFormData, TUser, TLoginResponse };

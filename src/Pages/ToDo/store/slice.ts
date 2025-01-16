@@ -1,8 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { getToDoList } from "./action";
+import { TToDo, TToDoResponse } from "./types";
 
 interface ToDoSlice {
-  todos: any;
+  todos: TToDo[];
   error: string | null;
   pagingMeta: {
     currentPage: number;
@@ -31,14 +32,17 @@ const toDoSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getToDoList.pending, (state, action: any) => {
+      .addCase(getToDoList.pending, (state, _) => {
         state.isLoading = true;
       })
-      .addCase(getToDoList.fulfilled, (state, action: any) => {
-        state.todos = action.payload.todos;
-        state.pagingMeta.totalItems = action.payload.total;
-        state.isLoading = false;
-      })
+      .addCase(
+        getToDoList.fulfilled,
+        (state, action: PayloadAction<TToDoResponse>) => {
+          state.todos = action.payload.todos;
+          state.pagingMeta.totalItems = action.payload.total;
+          state.isLoading = false;
+        }
+      )
       .addCase(getToDoList.rejected, (state, _) => {
         state.error = "Failed to fetch todo list";
         state.isLoading = false;

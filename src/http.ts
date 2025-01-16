@@ -22,13 +22,22 @@ axiosInstance.interceptors.request.use(
   }
 );
 
+const handleRequestError = (error: unknown): never => {
+  if (axios.isAxiosError(error)) {
+    console.error("HTTP request failed:", error.message);
+    throw error.response ? error.response.data : error.message;
+  } else {
+    console.error("Unexpected error:", error);
+    throw error;
+  }
+};
+
 export const $get = async (url: string, params = {}) => {
   try {
     const response = await axiosInstance.get(url, { params });
     return response.data;
-  } catch (error: any) {
-    console.error("GET request failed:", error);
-    throw error.response ? error.response.data : error;
+  } catch (error) {
+    handleRequestError(error);
   }
 };
 
@@ -39,9 +48,8 @@ export const $post = async (
   try {
     const response = await axiosInstance.post(url, data);
     return response.data;
-  } catch (error: any) {
-    console.error("POST request failed:", error);
-    throw error.response ? error.response.data : error;
+  } catch (error) {
+    handleRequestError(error);
   }
 };
 
@@ -49,8 +57,7 @@ export const $put = async (url: string, data: any) => {
   try {
     const response = await axiosInstance.put(url, data);
     return response.data;
-  } catch (error: any) {
-    console.error("PUT request failed:", error);
-    throw error.response ? error.response.data : error;
+  } catch (error) {
+    handleRequestError(error);
   }
 };

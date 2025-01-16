@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { LoginFormData } from "../../../store/auth/types";
+import { TLoginFormData } from "../../../store/auth/types";
 
 interface LoginSlice {
-  loginFormData: LoginFormData;
+  loginFormData: TLoginFormData;
 }
 
 const initialState: LoginSlice = {
@@ -18,7 +18,7 @@ const loginSlice = createSlice({
   reducers: {
     setFormFields: (
       state,
-      action: PayloadAction<{ field: keyof LoginFormData; value: string }>
+      action: PayloadAction<{ field: keyof TLoginFormData; value: string }>
     ) => {
       const { field, value } = action.payload;
       state.loginFormData[field] = value;
